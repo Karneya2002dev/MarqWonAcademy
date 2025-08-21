@@ -179,7 +179,7 @@ const Workshops = () => {
 
       {/* Add gap and animate FallOfWall */}
       <div ref={fallRef} className="mt-20">
-        <FallOfWall />
+        {/* <FallOfWall /> */}
       </div>
     </section>
   );

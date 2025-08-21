@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import Navbar from "../NavBar/NavBar";
+// import Navbar from "../NavBar/NavBar";
 import StatsSection from "./StatsSection";
 import CoursesSection from "./CourseCard";
 
@@ -61,7 +61,7 @@ const Hero = () => {
 
   return (
     <>
-      <div className="relative bg-gradient-to-r from-black via-gray-900 to-black text-white min-h-screen flex flex-col justify-between overflow-hidden">
+      <div  className="relative bg-gradient-to-r from-black via-gray-900 to-black text-white min-h-screen flex flex-col justify-between overflow-hidden">
         {/* Content Section */}
         <div className="flex items-center justify-between px-10 flex-1">
           {/* Left Content */}
@@ -175,7 +175,7 @@ const Hero = () => {
           animation: star-glow 2s infinite ease-in-out;
         }
       `}</style>
-      <CoursesSection />
+      {/* <CoursesSection /> */}
     </>
   );
 };

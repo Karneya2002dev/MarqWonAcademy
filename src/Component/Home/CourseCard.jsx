@@ -4,12 +4,14 @@ import { Star, Users, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
+import come from "../../assets/up.mp4"
+import { Lock } from "lucide-react"; 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Workshops from "./WorkShop";
 
+
+// CourseCard Component
 // CourseCard Component
 const CourseCard = ({ course, index }) => {
   return (
@@ -18,20 +20,49 @@ const CourseCard = ({ course, index }) => {
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
-      className="bg-[#111] rounded-2xl overflow-hidden shadow-lg border border-gray-800 hover:shadow-violet-500/20 transition-all duration-300"
+      className="bg-[#111] rounded-2xl overflow-hidden shadow-lg border border-gray-800 hover:shadow-violet-500/20 transition-all duration-300 relative"
     >
-      {/* Thumbnail */}
+      {/* Coming Soon Badge */}
+      {course.comingSoon && (
+        <span className="absolute top-3 left-3 bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">
+          Coming Soon
+        </span>
+      )}
+
+      {/* Thumbnail or Video */}
       <div className="relative">
-        <img
-          src={course.image}
-          alt={course.title}
-          className="w-full h-48 object-cover"
-        />
+        {course.comingSoon && course.video ? (
+          <video
+            src={course.video}
+            className="w-full h-48 object-cover opacity-80"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : (
+          <img
+            src={course.image}
+            alt={course.title}
+            className={`w-full h-48 object-cover ${
+              course.comingSoon ? "opacity-50 grayscale" : ""
+            }`}
+          />
+        )}
+
+        {/* Lock Overlay for Upcoming */}
+        {course.comingSoon && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+            <Lock size={40} className="text-white opacity-80" />
+          </div>
+        )}
 
         {/* Category Badge */}
-        <span className="absolute top-3 right-3 bg-gradient-to-r from-violet-500 to-indigo-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-          {course.category}
-        </span>
+        {!course.comingSoon && (
+          <span className="absolute top-3 right-3 bg-gradient-to-r from-violet-500 to-indigo-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+            {course.category}
+          </span>
+        )}
       </div>
 
       {/* Content */}
@@ -39,32 +70,42 @@ const CourseCard = ({ course, index }) => {
         <h3 className="text-xl font-bold text-white mb-2">{course.title}</h3>
         <p className="text-gray-400 text-sm mb-4">{course.description}</p>
 
-        {/* Stats */}
-        <div className="flex items-center gap-4 text-gray-300 text-sm mb-4">
-          <span className="flex items-center gap-1">
-            <Users size={16} /> {course.students}+
-          </span>
-          <span className="flex items-center gap-1">
-            <Clock size={16} /> {course.duration}
-          </span>
-          <span className="flex items-center gap-1 text-yellow-400 font-semibold">
-            <Star size={16} /> {course.rating}
-          </span>
-        </div>
+        {!course.comingSoon ? (
+          <>
+            {/* Stats */}
+            <div className="flex items-center gap-4 text-gray-300 text-sm mb-4">
+              <span className="flex items-center gap-1">
+                <Users size={16} /> {course.students}+
+              </span>
+              <span className="flex items-center gap-1">
+                <Clock size={16} /> {course.duration}
+              </span>
+              <span className="flex items-center gap-1 text-yellow-400 font-semibold">
+                <Star size={16} /> {course.rating}
+              </span>
+            </div>
 
-        {/* Actions */}
-        <div className="flex justify-between">
-          <button className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 hover:bg-gray-700 transition">
-            View Details
-          </button>
-          <button className="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 transition">
-            📄 Brochure
-          </button>
-        </div>
+            {/* Actions */}
+            <div className="flex justify-between">
+              <button className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 hover:bg-gray-700 transition">
+                View Details
+              </button>
+              <button className="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 transition">
+                📄 Brochure
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="text-center text-gray-400 text-sm py-6 flex flex-col items-center">
+            <Lock size={20} className="mb-2 text-gray-500" />
+            🚀 Stay tuned! This course will be available soon.
+          </div>
+        )}
       </div>
     </motion.div>
   );
 };
+
 
 // Courses Section
 const CoursesSection = () => {
@@ -123,9 +164,30 @@ const CoursesSection = () => {
       category: "Data Science",
       image: "https://t3.ftcdn.net/jpg/09/33/83/82/360_F_933838289_TS8PCfgl9RFC1Z6dRwkpxpsG9gSgObnB.jpg",
     },
+   
+{
+  id: 6,
+  title: "Digital Marketing",
+  description: "Dive into AI tools like ChatGPT, DALL·E, and MidJourney.",
+  comingSoon: true,
+  category: "Marketing",
+  image: "https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg?semt=ais_hybrid&w=740&q=80",
+  video: come,
+},
+{
+  id: 7,
+  title: "Cybersecurity Essentials",
+  description: "Dive into AI tools like ChatGPT, DALL·E, and MidJourney.",
+  comingSoon: true,
+  category: "Security",
+  image: "https://www.bitlyft.com/hubfs/Cybersecurity-solutions.jpeg",
+  video: come,
+}
+
+
   ];
 
-  const filters = ["All Courses", "Web Development", "Data Science", "UI/UX"];
+  const filters = ["All Courses", "Web Development", "Data Science", "UI/UX","Marketing","Security"];
 
   const filteredCourses =
     filter === "All Courses"
@@ -133,7 +195,7 @@ const CoursesSection = () => {
       : courses.filter((c) => c.category === filter);
 
   return (
-    <section className="py-16 bg-black text-white">
+    <section id="courses" className="py-16 bg-black text-white">
       {/* Section Header */}
             {/* Section Header */}
        <motion.div
@@ -214,7 +276,7 @@ const CoursesSection = () => {
           ))}
         </Swiper>
       </div>
-      <Workshops />
+      {/* <Workshops /> */}
     </section>
   );
 };
