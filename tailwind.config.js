@@ -21,6 +21,9 @@ module.exports = {
         scroll: 'scroll 30s linear infinite',
       },
     },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
   },
   plugins: [],
 };
