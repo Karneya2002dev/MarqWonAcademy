@@ -1,19 +1,20 @@
 // CoursesSection.jsx
 import React, { useState } from "react";
-import { Star, Users, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Star, Users, Clock, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import come from "../../assets/up.mp4"
-import { Lock } from "lucide-react"; 
+import come from "../../assets/up.mp4";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-
-// CourseCard Component
 // CourseCard Component
 const CourseCard = ({ course, index }) => {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -87,7 +88,10 @@ const CourseCard = ({ course, index }) => {
 
             {/* Actions */}
             <div className="flex justify-between">
-              <button className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 hover:bg-gray-700 transition">
+              <button
+                onClick={() => navigate(`/courses/${course.id}`)}
+                className="px-4 py-2 rounded-lg bg-gray-800 text-gray-200 hover:bg-gray-700 transition"
+              >
                 View Details
               </button>
               <button className="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 transition">
@@ -105,7 +109,6 @@ const CourseCard = ({ course, index }) => {
     </motion.div>
   );
 };
-
 
 // Courses Section
 const CoursesSection = () => {
@@ -164,30 +167,35 @@ const CoursesSection = () => {
       category: "Data Science",
       image: "https://t3.ftcdn.net/jpg/09/33/83/82/360_F_933838289_TS8PCfgl9RFC1Z6dRwkpxpsG9gSgObnB.jpg",
     },
-   
-{
-  id: 6,
-  title: "Digital Marketing",
-  description: "Dive into AI tools like ChatGPT, DALL·E, and MidJourney.",
-  comingSoon: true,
-  category: "Marketing",
-  image: "https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg?semt=ais_hybrid&w=740&q=80",
-  video: come,
-},
-{
-  id: 7,
-  title: "Cybersecurity Essentials",
-  description: "Dive into AI tools like ChatGPT, DALL·E, and MidJourney.",
-  comingSoon: true,
-  category: "Security",
-  image: "https://www.bitlyft.com/hubfs/Cybersecurity-solutions.jpeg",
-  video: come,
-}
-
-
+    {
+      id: 6,
+      title: "Digital Marketing",
+      description: "Dive into AI tools like ChatGPT, DALL·E, and MidJourney.",
+      comingSoon: true,
+      category: "Marketing",
+      image:
+        "https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg?semt=ais_hybrid&w=740&q=80",
+      video: come,
+    },
+    {
+      id: 7,
+      title: "Cybersecurity Essentials",
+      description: "Dive into AI tools like ChatGPT, DALL·E, and MidJourney.",
+      comingSoon: true,
+      category: "Security",
+      image: "https://www.bitlyft.com/hubfs/Cybersecurity-solutions.jpeg",
+      video: come,
+    },
   ];
 
-  const filters = ["All Courses", "Web Development", "Data Science", "UI/UX","Marketing","Security"];
+  const filters = [
+    "All Courses",
+    "Web Development",
+    "Data Science",
+    "UI/UX",
+    "Marketing",
+    "Security",
+  ];
 
   const filteredCourses =
     filter === "All Courses"
@@ -195,10 +203,9 @@ const CoursesSection = () => {
       : courses.filter((c) => c.category === filter);
 
   return (
-    <section id="courses" className="py-16 bg-black text-white">
+    <section className="py-16 bg-black text-white">
       {/* Section Header */}
-            {/* Section Header */}
-       <motion.div
+      <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -276,7 +283,6 @@ const CoursesSection = () => {
           ))}
         </Swiper>
       </div>
-      {/* <Workshops /> */}
     </section>
   );
 };

@@ -4,6 +4,7 @@ import gsap from "gsap";
 // import Navbar from "../NavBar/NavBar";
 import StatsSection from "./StatsSection";
 import CoursesSection from "./CourseCard";
+import CourseDetails from "../CourseDetails";
 
 const users = [
   { name: "Meghana", role: "Developer", img: "https://randomuser.me/api/portraits/women/44.jpg" },
@@ -175,7 +176,7 @@ const Hero = () => {
           animation: star-glow 2s infinite ease-in-out;
         }
       `}</style>
-      {/* <CoursesSection /> */}
+   {/* <CourseDetails /> */}
     </>
   );
 };

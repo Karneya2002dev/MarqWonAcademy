@@ -13,6 +13,20 @@
   animation: slide 12s infinite;
 }
 
+.swiper-pagination {
+  bottom: -20px !important; /* push dots further down */
+}
+
+.swiper-pagination-bullet {
+  background: white !important; /* change from default blue */
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ec4899 !important; /* pink-500 */
+  opacity: 1;
+}
+
 
 @keyframes gradient {
   0% { background-position: 0% 50%; }
