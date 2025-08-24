@@ -68,14 +68,14 @@ const CourseDetailsPage = () => {
       transition={{ duration: 1 }}
     >
       {/* Back Button */}
-      <motion.button
+      {/* <motion.button
         onClick={() => navigate(-1)}
         className="flex items-center gap-2 mb-6 text-violet-500 hover:text-violet-400 transition"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         <ArrowLeft size={20} /> Back
-      </motion.button>
+      </motion.button> */}
 
       {/* Course Header */}
       <motion.div

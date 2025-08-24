@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Star, Users, Clock, Lock } from "lucide-react";
 import { motion } from "framer-motion";
-import come from "../assets/up.mp4";
+import come from "../assets/v.mp4";
 import { useNavigate } from "react-router-dom";
 
 // ----------------------
@@ -48,11 +48,14 @@ const CourseCard = ({ course, index }) => {
         )}
 
         {/* Lock Overlay for Upcoming */}
-        {course.comingSoon && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-            <Lock size={40} className="text-white opacity-80" />
-          </div>
-        )}
+       {/* Lock Overlay for Upcoming */}
+{course.comingSoon && (
+  <div className="absolute inset-0 flex items-end justify-center bg-black/40 pb-4">
+    <Lock size={40} className="text-white opacity-80" />
+  </div>
+)}
+
+     
 
         {/* Category Badge */}
         {!course.comingSoon && (

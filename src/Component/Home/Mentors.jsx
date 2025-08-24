@@ -79,50 +79,49 @@ export default function Mentors() {
 >
 
           {mentors.map((mentor, index) => (
-            <SwiperSlide key={index}>
-              <motion.div
-  whileHover={{ scale: 1.05, y: -8 }}
-  transition={{ type: "spring", stiffness: 300 }}
-className="relative flex flex-col items-center text-center bg-gray-900/80 backdrop-blur-md 
-           rounded-full shadow-lg p-6 h-[420px] w-[260px] mx-auto overflow-hidden border border-gray-700"
+           <SwiperSlide key={index}>
+  <motion.div
+    whileHover={{ scale: 1.05, y: -8 }}
+    transition={{ type: "spring", stiffness: 300 }}
+    className="relative flex flex-col items-center text-center bg-gray-900/80 backdrop-blur-md 
+               rounded-2xl shadow-lg p-6 h-[380px] w-[280px] mx-auto overflow-hidden border border-gray-700"
+  >
+    {/* Image at Top */}
+    <motion.img
+      src={mentor.image}
+      alt={mentor.name}
+      className="w-32 h-32 object-cover rounded-full border-4 border-white mb-4"
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.4 }}
+    />
 
->
-  {/* Mentor Name & Role */}
-  <div className="z-10 mt-2">
-    <h3 className="text-lg font-bold text-white">{mentor.name}</h3>
-    <p className="text-sm text-gray-200">{mentor.role}</p>
-  </div>
+    {/* Mentor Name & Role */}
+    <div className="z-10">
+      <h3 className="text-lg font-bold text-white">{mentor.name}</h3>
+      <p className="text-sm text-gray-300">{mentor.role}</p>
+    </div>
 
-  {/* Image */}
-  <motion.img
-    src={mentor.image}
-    alt={mentor.name}
-    className="w-40 h-40 object-cover rounded-full border-4 border-white mt-6"
-    whileHover={{ scale: 1.1 }}
-    transition={{ duration: 0.4 }}
-  />
+    {/* LinkedIn */}
+    {!mentor.comingSoon && (
+      <a
+        href={mentor.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 text-white hover:text-blue-300 transition"
+      >
+        <Linkedin size={22} />
+      </a>
+    )}
 
-  {/* LinkedIn */}
-  {!mentor.comingSoon && (
-    <a
-      href={mentor.linkedin}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-4 text-white hover:text-blue-300 transition"
-    >
-      <Linkedin size={22} />
-    </a>
-  )}
+    {/* Coming Soon Badge */}
+    {mentor.comingSoon && (
+      <span className="absolute top-3 right-3 bg-black text-white text-[10px] px-2 py-1 rounded">
+        Coming Soon
+      </span>
+    )}
+  </motion.div>
+</SwiperSlide>
 
-  {/* Coming Soon */}
-  {mentor.comingSoon && (
-    <span className="absolute top-3 right-3 bg-black text-white text-[10px] px-2 py-1 rounded">
-      Coming Soon
-    </span>
-  )}
-</motion.div>
-
-            </SwiperSlide>
           ))}
         </Swiper>
       </div>

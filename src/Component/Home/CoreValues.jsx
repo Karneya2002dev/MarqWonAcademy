@@ -1,7 +1,8 @@
 import React from "react";
 import { BookOpen, Languages, Users, Workflow, Star } from "lucide-react";
 import { motion } from "framer-motion";
-import Mentors from "./Mentors";
+// import Mentors from "./Mentors";
+import { useNavigate } from "react-router-dom";
 
 const values = [
   {
@@ -31,17 +32,18 @@ const values = [
 ];
 
 export default function CoreValues() {
+   const navigate = useNavigate();
   return (
     <>
       {/* Core Values Section */}
-      <section className="bg-black text-white py-16 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 text-center">
+      <section className="bg-black text-white py-12 sm:py-16 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           {/* Title */}
-          <h2 className="text-4xl font-bold relative inline-block">
+          <h2 className="text-3xl sm:text-4xl font-bold relative inline-block">
             <span className="text-violet-500">Core</span> Values
           </h2>
-          <p className="mt-4 text-gray-400">
-            Empowering Learners with Expert Guidance and Practical Skills. <br />
+          <p className="mt-3 sm:mt-4 text-gray-400 text-sm sm:text-base">
+            Empowering Learners with Expert Guidance and Practical Skills. <br className="hidden sm:block" />
             Here's What We Offer:
           </p>
 
@@ -51,37 +53,37 @@ export default function CoreValues() {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="flex-1 max-w-xs border-t border-gray-700 origin-right"
+              className="flex-1 max-w-[120px] sm:max-w-xs border-t border-gray-700 origin-right"
             />
             <motion.div
               animate={{ scale: [1, 1.3, 1], rotate: [0, 15, -15, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             >
-              <Star size={24} className="mx-3 text-violet-500 drop-shadow-lg" />
+              <Star size={22} className="mx-2 sm:mx-3 text-violet-500 drop-shadow-lg" />
             </motion.div>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
-              className="flex-1 max-w-xs border-t border-gray-700 origin-left"
+              className="flex-1 max-w-[120px] sm:max-w-xs border-t border-gray-700 origin-left"
             />
           </div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mt-10 sm:mt-12">
             {values.map((value, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-neutral-900 rounded-2xl p-6 flex flex-col items-start shadow-lg hover:shadow-violet-500/20 transition"
+                className="bg-neutral-900 rounded-2xl p-5 sm:p-6 flex flex-col items-start shadow-lg hover:shadow-violet-500/20 transition"
               >
-                <div className="mb-4 p-3 bg-neutral-800 rounded-xl">
+                <div className="mb-3 sm:mb-4 p-2.5 sm:p-3 bg-neutral-800 rounded-xl">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold">{value.title}</h3>
-                <p className="mt-2 text-gray-400 text-sm">{value.description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold">{value.title}</h3>
+                <p className="mt-2 text-gray-400 text-sm sm:text-base">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -89,17 +91,17 @@ export default function CoreValues() {
       </section>
 
       {/* Join With Fellow Learners Section */}
-      <section className="bg-[#1a0015] text-white py-16">
-        <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-3xl font-bold">
+      <section className="bg-[#1a0015] text-white py-12 sm:py-16">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">
             Join with Fellow <span className="text-pink-500">Learners</span>
           </h2>
-          <p className="mt-2 text-gray-300">
+          <p className="mt-2 text-gray-300 text-sm sm:text-base">
             Our foundation rests on real world relevance.
           </p>
 
           {/* Avatars */}
-          <div className="flex justify-center items-center mt-6 space-x-[-12px]">
+          <div className="flex justify-center items-center mt-6 space-x-[-10px] sm:space-x-[-12px]">
             {[
               "/avatars/user1.jpg",
               "/avatars/user2.jpg",
@@ -111,26 +113,26 @@ export default function CoreValues() {
                 key={i}
                 src={img}
                 alt="Learner"
-                className="w-12 h-12 rounded-full border-2 border-white"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white"
               />
             ))}
-            <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-sm border-2 border-white">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-800 flex items-center justify-center text-xs sm:text-sm border-2 border-white">
               10K+
             </div>
           </div>
 
           {/* CTA Button */}
           <div className="mt-6">
-            <button className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-6 py-3 rounded-full border-2 border-pink-500 shadow-lg transition">
-              Explore Courses
-            </button>
-          </div>
+      <button
+        onClick={() => navigate("/courses")}
+        className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-full border-2 border-pink-500 shadow-lg transition"
+      >
+        Explore Courses
+      </button>
+    </div>
         </div>
-
-       
       </section>
-       {/* <Mentors /> */}
+      {/* <Mentors /> */}
     </>
   );
 }
-

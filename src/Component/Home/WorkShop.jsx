@@ -121,56 +121,60 @@ const Workshops = () => {
   };
 
   return (
-    <section className="py-16 bg-black text-white">
+    <section className="py-12 sm:py-16 bg-black text-white">
       {/* Title */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-extrabold">
+      <div className="text-center mb-10 sm:mb-12 px-4">
+        <h2 className="text-3xl sm:text-4xl font-extrabold">
           Ongoing <span className="text-pink-500">Workshops</span>
         </h2>
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-2xl mx-auto">
           Attend the Free Course Workshops and Get to Know All the Details.
         </p>
 
         {/* Divider */}
         <div className="flex items-center justify-center mt-6">
-          <div className="flex-1 border-t border-gray-700"></div>
-          <Star size={24} ref={starRef} className="mx-3 text-pink-500" />
-          <div className="flex-1 border-t border-gray-700"></div>
+          <div className="flex-1 max-w-[100px] sm:max-w-xs border-t border-gray-700"></div>
+          <Star size={22} ref={starRef} className="mx-2 sm:mx-3 text-pink-500" />
+          <div className="flex-1 max-w-[100px] sm:max-w-xs border-t border-gray-700"></div>
         </div>
       </div>
 
       {/* Cards */}
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4 sm:px-6">
         {workshops.map((w, i) => (
           <div
             key={i}
             ref={(el) => (cardsRef.current[i] = el)}
             className="bg-[#111] rounded-2xl overflow-hidden shadow-lg border border-gray-800 flex flex-col hover:shadow-pink-500/40 transition-shadow duration-300"
           >
-            <div className="p-6">
-              <img src={w.img} alt={w.title} className="rounded-xl" />
+            <div className="p-4 sm:p-6">
+              <img
+                src={w.img}
+                alt={w.title}
+                className="rounded-xl w-full h-40 sm:h-48 object-cover"
+              />
             </div>
-            <div className="p-6 flex-1 flex flex-col">
-              <span className="bg-gray-800 text-sm px-3 py-1 rounded-full inline-block mb-3">
+            <div className="p-4 sm:p-6 flex-1 flex flex-col">
+              <span className="bg-gray-800 text-xs sm:text-sm px-3 py-1 rounded-full inline-block mb-3">
                 {w.registered}
               </span>
-              <h3 className="text-xl font-bold">{w.title}</h3>
+              <h3 className="text-lg sm:text-xl font-bold">{w.title}</h3>
               <p className="text-gray-400 text-sm mt-1 flex-1">{w.desc}</p>
-              <div className="mt-4 flex items-center justify-between text-sm">
+              <div className="mt-3 sm:mt-4 flex items-center justify-between text-xs sm:text-sm">
                 <span className="flex items-center gap-1 text-yellow-400">
                   ⭐ {w.rating}
                 </span>
               </div>
-              <div className="mt-6 flex items-center justify-between">
+              <div className="mt-4 sm:mt-6 flex items-center justify-between">
                 <div>
-                  <span className="text-lg font-bold">₹{w.price}</span>{" "}
-                  <span className="text-gray-500 line-through">
+                  <span className="text-base sm:text-lg font-bold">₹{w.price}</span>{" "}
+                  <span className="text-gray-500 line-through text-sm sm:text-base">
                     ₹{w.oldPrice}
                   </span>
                 </div>
                 <button
                   ref={(el) => (buttonRef.current[i] = el)}
-                  className="bg-pink-600 hover:bg-pink-700 text-white px-5 py-2 rounded-lg font-semibold transition"
+                  className="bg-pink-600 hover:bg-pink-700 text-white px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base font-semibold transition"
                   onClick={() => {
                     setSelectedWorkshop(w);
                     setIsModalOpen(true);
@@ -186,52 +190,52 @@ const Workshops = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="modal-content bg-[#111] text-white p-8 rounded-2xl max-w-lg w-full relative">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 px-4">
+          <div className="modal-content bg-[#111] text-white p-6 sm:p-8 rounded-2xl max-w-md w-full relative">
             {/* Close */}
             <button
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
               onClick={() => setIsModalOpen(false)}
             >
-              <X size={24} />
+              <X size={22} className="sm:size-6" />
             </button>
 
             {/* Title */}
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">
               Register for {selectedWorkshop?.title}
             </h3>
 
             {!isSuccess ? (
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   placeholder="Full Name"
-                  className="w-full p-3 rounded-lg bg-gray-800 text-white outline-none focus:ring-2 focus:ring-pink-500"
+                  className="w-full p-2.5 sm:p-3 rounded-lg bg-gray-800 text-white text-sm sm:text-base outline-none focus:ring-2 focus:ring-pink-500"
                   required
                 />
                 <input
                   type="email"
                   placeholder="Email"
-                  className="w-full p-3 rounded-lg bg-gray-800 text-white outline-none focus:ring-2 focus:ring-pink-500"
+                  className="w-full p-2.5 sm:p-3 rounded-lg bg-gray-800 text-white text-sm sm:text-base outline-none focus:ring-2 focus:ring-pink-500"
                   required
                 />
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="w-full p-3 rounded-lg bg-gray-800 text-white outline-none focus:ring-2 focus:ring-pink-500"
+                  className="w-full p-2.5 sm:p-3 rounded-lg bg-gray-800 text-white text-sm sm:text-base outline-none focus:ring-2 focus:ring-pink-500"
                   required
                 />
                 <button
                   type="submit"
-                  className="w-full bg-pink-600 hover:bg-pink-700 py-3 rounded-lg font-semibold transition"
+                  className="w-full bg-pink-600 hover:bg-pink-700 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition"
                 >
                   Confirm Registration
                 </button>
               </form>
             ) : (
               <div className="flex flex-col items-center justify-center py-8">
-                <CheckCircle2 size={50} className="text-green-500 mb-4" />
-                <p className="text-lg font-semibold">
+                <CheckCircle2 size={40} className="sm:size-12 text-green-500 mb-4" />
+                <p className="text-base sm:text-lg font-semibold">
                   Registration Successful! 🎉
                 </p>
               </div>

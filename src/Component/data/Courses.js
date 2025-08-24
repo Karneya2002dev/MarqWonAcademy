@@ -1,5 +1,5 @@
 // src/coursesData.js
-import come from "../../assets/up.mp4";
+import come from "../../assets/video.mov";
 
 const courses = [
   {

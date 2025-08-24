@@ -10,7 +10,9 @@ import Workshops from './Component/Home/WorkShop'
 import CourseDetails from './Component/CourseDetails'
 import CourseDetailsPage from './Component/Home/CourseDetailsPage'
 import VerifyCertificate from './Component/Home/VerifyCertificate'
+import FallOfLove from './Component/Home/FallOfWall'
 import ScrollToTop from './Component/Home/ScrollToTop'
+import About from './Component/Home/About'
 const App = () => {
   return (
   <>
@@ -23,7 +25,9 @@ const App = () => {
       <Route path='/courses' element={<CourseDetails/>} />
       <Route path='/courses/:id' element={<CourseDetailsPage/>} />
       <Route path='/workshops' element={<Workshops />} />
+      <Route path='/love' element={<FallOfLove />} />
       <Route path='/verify' element={<VerifyCertificate />} />
+      <Route path='/about' element={<About />} />
     
    
     </Routes>
